@@ -7,6 +7,7 @@
 class GameManager
 {
 public:
+	void Init();
 	void Update();
 	void Draw();
 
@@ -18,7 +19,9 @@ private:
 	Paddle paddle {};
 
 	//Brick Wall
-	Brick bricks[14][8];
-	int startRowBricks = 5;
+	static const int maxBrickRows = 14;
+	static const int maxBrickColumns = 8;
+	Brick bricks[maxBrickRows][maxBrickColumns];
+	int startRowBricks = 14;
 };
 

@@ -49,6 +49,8 @@ void Load()
     InitWindow(screenWidth, screenHeight, "BRICK BREAKER");
     currentScreen = MENU;
     SetTargetFPS(60);
+
+    gameManager.Init();
 }
 
 void Update() 
