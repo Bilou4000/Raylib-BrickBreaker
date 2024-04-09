@@ -12,7 +12,6 @@ public:
 public:
 	Rectangle brickRec;
 
-private:
 	float brickXPos = 10;
 	float brickYPos = 10;
 	float brickWidth = 200;

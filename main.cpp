@@ -1,8 +1,6 @@
 #include "raylib.h"
 
-#include "Ball.h"
-#include "Paddle.h"
-#include "Brick.h"
+#include "GameManager.h"
 
 #include <iostream>
 #include <string>
@@ -11,15 +9,11 @@ using namespace std;
 
 typedef enum GameScreen { MENU, GAMEPLAY, ENDING } GameScreen;
 GameScreen currentScreen;
+GameManager gameManager;
 
 //Screen
 int screenWidth = 1600;
 int screenHeight = 900;
-
-//Variable
-Ball ball {};
-Paddle paddle {};
-Brick brick {};
 
 //Score
 int score = 0;
@@ -33,9 +27,6 @@ void Load();
 void Update();
 void Draw();
 void Unload();
-
-void Gameplay();
-bool Collision(Rectangle a, Rectangle b);
 
 
 int main()
@@ -74,7 +65,7 @@ void Update()
         break;
         case GAMEPLAY:
         {
-            Gameplay();
+            gameManager.Update();
         }
         break;
         case ENDING:
@@ -100,40 +91,6 @@ void Update()
     }
 }
 
-void Gameplay()
-{
-    ball.Update();
-    paddle.Update();
-
-    //COLLISION with paddle
-    if (Collision(paddle.paddleRec, ball.ballRec))
-    {
-        ball.BounceOnPaddle(paddle.paddleRec);
-    }
-
-    //COLLISION with bricks
-    if (Collision(brick.brickRec, ball.ballRec))
-    {
-        ball.BounceOnBrick();
-    }
-}
-
-bool Collision(Rectangle a, Rectangle b)
-{
-    int xMinA = a.x;
-    int yMinA = a.y;
-    int xMaxA = a.x + a.width;
-    int yMaxA = a.y + a.height;
-
-    int xMinB = b.x;
-    int yMinB = b.y;
-    int xMaxB = b.x + b.width;
-    int yMaxB = b.y + b.height;
-
-    return ( !(xMinB > xMaxA || yMinB > yMaxA
-        || xMaxB < xMinA || yMaxB < yMinA) );
-}
-
 void Draw() 
 {
     BeginDrawing();
@@ -149,9 +106,7 @@ void Draw()
         break;
         case GAMEPLAY:
         {
-            ball.Draw();
-            paddle.Draw();
-            brick.Draw();
+            gameManager.Draw();
 
             //DrawText(to_string(score).c_str(), 600, 50, 60, BLUE);
         }
