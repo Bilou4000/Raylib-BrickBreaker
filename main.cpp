@@ -1,4 +1,8 @@
 #include "raylib.h"
+
+#include "Ball.h"
+#include "Paddle.h"
+
 #include <iostream>
 #include <string>
 
@@ -11,21 +15,13 @@ GameScreen currentScreen;
 int screenWidth = 1600;
 int screenHeight = 900;
 
-//Ball
-Rectangle ball { 100, 150, 64, 64 };
-
-int speedXBall = 6;
-int speedYBall = -6;
-
-
-//Paddle
-Rectangle leftPaddle { 0, 150, 55, 256 };
-int speedLeftPaddle = 8;
-
+//Variable
+Ball ball {};
+Paddle paddle {};
 
 //Score
-int leftScore = 0;
-int rightScore = 0;
+int score = 0;
+
 //EndOfGame
 string textResult;
 bool resultVisible = false;
@@ -38,8 +34,6 @@ void Unload();
 
 void Gameplay();
 bool Collision(Rectangle a, Rectangle b);
-void BounceOnPaddle(bool playerSide);
-void PlaceBall(bool playerSide);
 
 
 int main()
@@ -86,8 +80,7 @@ void Update()
             if (IsKeyPressed(KEY_R))
             {
                 textResult = "";
-                leftScore = 0;
-                rightScore = 0;
+                score = 0;
 
                 currentScreen = GAMEPLAY;
             }
@@ -95,8 +88,7 @@ void Update()
             if (IsKeyPressed(KEY_SEMICOLON))
             {
                 textResult = "";
-                leftScore = 0;
-                rightScore = 0;
+                score = 0;
 
                 currentScreen = MENU;
             }
@@ -108,67 +100,13 @@ void Update()
 
 void Gameplay()
 {
-    //BALL
-    ball.x += speedXBall;
-    ball.y += speedYBall;
+    ball.Update();
+    paddle.Update();
 
-    if (ball.y < 0)
+    //COLLISION with paddle
+    if (Collision(paddle.paddleRec, ball.ballRec))
     {
-        speedYBall = -speedYBall;
-        ball.y = 0;
-    }
-    if (ball.y + ball.height > screenHeight)
-    {
-        speedYBall = -speedYBall;
-        ball.y = screenHeight - ball.height;
-    }
-
-    if (ball.x < 0)
-    {
-        ++rightScore;
-        PlaceBall(true);
-
-        if (rightScore >= 3)
-        {
-            textResult = "Defeat";
-            currentScreen = ENDING;
-        }
-    }
-    if (ball.x + ball.width > screenWidth)
-    {
-        ++leftScore;
-        PlaceBall(false);
-
-        if (leftScore >= 3)
-        {
-            textResult = "Victory";
-            currentScreen = ENDING;
-        }
-    }
-
-    //LEFT PADDLE
-    if (IsKeyDown(KEY_S))
-    {
-        leftPaddle.y += speedLeftPaddle;
-    }
-    else if (IsKeyDown(KEY_W))
-    {
-        leftPaddle.y -= speedLeftPaddle;
-    }
-
-    if (leftPaddle.y < 0)
-    {
-        leftPaddle.y = 0;
-    }
-    if (leftPaddle.y + leftPaddle.height > screenHeight)
-    {
-        leftPaddle.y = screenHeight - leftPaddle.height;
-    }
-
-    //COLLISION
-    if (Collision(leftPaddle, ball))
-    {
-        BounceOnPaddle(true);
+        ball.BounceOnPaddle();
     }
 }
 
@@ -188,31 +126,6 @@ bool Collision(Rectangle a, Rectangle b)
         || xMaxB < xMinA || yMaxB < yMinA) );
 }
 
-void BounceOnPaddle(bool playerSide)
-{
-    speedXBall = -speedXBall;
-    if (playerSide)
-    {
-        ball.x = leftPaddle.x + 64;
-    }
-}
-
-//will have to change it
-void PlaceBall(bool playerSide)
-{
-    if (playerSide)
-    {
-        ball.x = ball.width * 4;
-    }
-    else
-    {
-        ball.x = screenWidth - ball.width * 4;
-    }
-
-    ball.y = 150;
-    speedXBall = -speedXBall;
-}
-
 void Draw() 
 {
     BeginDrawing();
@@ -222,25 +135,16 @@ void Draw()
     {
         case MENU:
         {
-            DrawText("BRICK BREAKER", 580, 150, 150, RED);
+            DrawText("BRICK BREAKER", 200, 150, 150, RED);
             DrawText("Press ENTER to PLAY", 350, 400, 80, LIGHTGRAY);
         }
         break;
         case GAMEPLAY:
         {
-            int rectY = -5;
-            for (int i = 0; i < 12; i++)
-            {
-                DrawRectangle(810, rectY, 20, 35, WHITE);
-                rectY += 80;
-            }
+            ball.Draw();
+            paddle.Draw();
 
-
-            DrawRectangleRec(ball, WHITE);
-            DrawRectangleRec(leftPaddle, WHITE);
-
-            DrawText(to_string(leftScore).c_str(), 600, 50, 60, BLUE);
-            DrawText(to_string(rightScore).c_str(), 1000, 50, 60, RED);
+            //DrawText(to_string(score).c_str(), 600, 50, 60, BLUE);
         }
         break;
         case ENDING:
