@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+
 class Paddle
 {
 public:
@@ -8,7 +9,8 @@ public:
 	void Draw();
 
 public:
-	Rectangle paddleRec { (1600 / 2) - (256 / 2), 900 - 55, 256, 55 };
+	Rectangle paddleRec { (1600 / 2) - (256 / 2), 900 - 70, 256, 55 };
+
 private:
 	int speedPaddle = 8;
 };

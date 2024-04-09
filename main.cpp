@@ -2,6 +2,7 @@
 
 #include "Ball.h"
 #include "Paddle.h"
+#include "Brick.h"
 
 #include <iostream>
 #include <string>
@@ -18,6 +19,7 @@ int screenHeight = 900;
 //Variable
 Ball ball {};
 Paddle paddle {};
+Brick brick {};
 
 //Score
 int score = 0;
@@ -106,7 +108,13 @@ void Gameplay()
     //COLLISION with paddle
     if (Collision(paddle.paddleRec, ball.ballRec))
     {
-        ball.BounceOnPaddle();
+        ball.BounceOnPaddle(paddle.paddleRec);
+    }
+
+    //COLLISION with bricks
+    if (Collision(brick.brickRec, ball.ballRec))
+    {
+        ball.BounceOnBrick();
     }
 }
 
@@ -143,6 +151,7 @@ void Draw()
         {
             ball.Draw();
             paddle.Draw();
+            brick.Draw();
 
             //DrawText(to_string(score).c_str(), 600, 50, 60, BLUE);
         }
