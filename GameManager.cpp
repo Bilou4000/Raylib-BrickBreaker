@@ -193,7 +193,19 @@ int GameManager::GetScore()
     return score;
 }
 
+float GameManager::GetTimer()
+{
+    return timer;
+}
+
+void GameManager::ResetTimer()
+{
+    timer = 0;
+}
+
 void GameManager::ResetScore()
 {
     score = 0;
 }
+
+

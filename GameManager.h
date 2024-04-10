@@ -13,8 +13,12 @@ public:
 
 	bool Collision(Rectangle a, Rectangle b);
 	void EndOfGame();
+
 	int GetScore();
 	void ResetScore();
+
+	float GetTimer();
+	void ResetTimer();
 
 private:
 	//Variable
