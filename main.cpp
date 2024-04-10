@@ -82,6 +82,7 @@ void Update()
         case GAMEPLAY:
         {
             StopMusicStream(startMusic);
+            StopMusicStream(endMusic);
 
             PlayMusicStream(mainMusic);
             UpdateMusicStream(mainMusic);

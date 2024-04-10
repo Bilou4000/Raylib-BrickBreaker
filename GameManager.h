@@ -29,7 +29,7 @@ private:
 	static const int maxBrickColumns = 8;
 	Brick bricks[maxBrickRows][maxBrickColumns];
 
-	int startGameRow = 3;
+	int startGameRow = 5;
 	int startRowBricks = startGameRow;
 	int maxLife = 3;
 	int life = maxLife;
