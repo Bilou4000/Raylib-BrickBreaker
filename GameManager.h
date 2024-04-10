@@ -22,6 +22,6 @@ private:
 	static const int maxBrickRows = 14;
 	static const int maxBrickColumns = 8;
 	Brick bricks[maxBrickRows][maxBrickColumns];
-	int startRowBricks = 5;
+	int startRowBricks = 1;
 };
 

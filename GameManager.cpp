@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 float brickCount = 0;
+bool endOfGame = false;
 
 void GameManager::Init()
 {
@@ -14,6 +15,15 @@ void GameManager::Init()
 
     float brickXPos = 0;
     float brickYPos = 0;
+
+    if (startRowBricks < 14)
+    {
+        endOfGame = false;
+    }
+    else
+    {
+        endOfGame = true;
+    }
 
     for (int row = 0; row < startRowBricks; row++)
     {
@@ -68,8 +78,13 @@ void GameManager::Update()
                     brickCount--;
                     if (brickCount <= 0)
                     {
+                        if (endOfGame)
+                        {
+                            //return end of game
+                        }
+
                         startRowBricks += 3;
-                        Init();
+                        return Init();
                     }
 
                     break;
