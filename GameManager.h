@@ -13,6 +13,8 @@ public:
 
 	bool Collision(Rectangle a, Rectangle b);
 	void EndOfGame();
+	int GetScore();
+	void ResetScore();
 
 private:
 	//Variable
@@ -26,8 +28,10 @@ private:
 
 	int startGameRow = 5;
 	int startRowBricks = startGameRow;
-	int score = 0;
-	int maxLife = 3;
+	int maxLife = 1;
 	int life = maxLife;
+
+	int score = 0;
+	float timer = 0;
 };
 

@@ -44,7 +44,7 @@ void Ball::Draw()
 {
     if (ballRec.y + ballRec.height < 900)
     {
-        DrawRectangleRec(ballRec, WHITE);
+        DrawRectangleRec(ballRec, ballColor);
     }
 }
 

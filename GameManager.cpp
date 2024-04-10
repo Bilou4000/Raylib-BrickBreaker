@@ -50,6 +50,8 @@ bool GameManager::Update()
     ball.Update(paddle);
     paddle.Update();
 
+    timer += GetFrameTime();
+
     //COLLISION with paddle
     if (Collision(paddle.paddleRec, ball.ballRec))
     {
@@ -117,7 +119,7 @@ bool GameManager::Update()
 
         life--;
 
-        if (life <= 0)
+        if (life < 0)
         {
             EndOfGame();
             return true;
@@ -141,6 +143,15 @@ void GameManager::Draw()
             bricks[row][column].Draw();
         }
     }
+
+    //draw life
+    int offset = 0;
+    int size = 40;
+    for (int i = 0; i < life; i++)
+    {
+        DrawRectangle(GetScreenWidth() - size*2 - offset, 925, size, size, ball.ballColor);
+        offset += size * 2;
+    }
 }
 
 bool GameManager::Collision(Rectangle a, Rectangle b)
@@ -161,6 +172,8 @@ bool GameManager::Collision(Rectangle a, Rectangle b)
 
 void GameManager::EndOfGame()
 {
+    endOfGame = false;
+
     for (int row = 0; row < startRowBricks; row++)
     {
         for (int column = 0; column < 8; column++)
@@ -172,4 +185,15 @@ void GameManager::EndOfGame()
 
     startRowBricks = startGameRow;
     life = maxLife;
+    //score = 0;
+}
+
+int GameManager::GetScore()
+{
+    return score;
+}
+
+void GameManager::ResetScore()
+{
+    score = 0;
 }

@@ -16,6 +16,7 @@ public:
 
 public:
 	Rectangle ballRec { 0, 0, 64, 64};
+	Color ballColor = PURPLE;
 	bool isLocked = true;
 
 private:
