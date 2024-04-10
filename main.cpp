@@ -11,6 +11,10 @@ typedef enum GameScreen { MENU, GAMEPLAY, ENDING } GameScreen;
 GameScreen currentScreen;
 GameManager gameManager;
 
+Music startMusic;
+Music mainMusic;
+Music endMusic;
+
 //Screen
 int screenWidth = 1600;
 int screenHeight = 1000;
@@ -49,7 +53,13 @@ void Load()
     currentScreen = MENU;
     SetTargetFPS(60);
 
+    InitAudioDevice();
     gameManager.Init();
+
+    startMusic = LoadMusicStream("resources/Rising_Up.mp3");
+    mainMusic = LoadMusicStream("resources/Dragon_Roost_Island.mp3");
+    endMusic = LoadMusicStream("resources/Goodbye_my_Princess.mp3");
+
 }
 
 void Update() 
@@ -58,6 +68,11 @@ void Update()
     {
         case MENU:
         {
+            StopMusicStream(endMusic);
+
+            PlayMusicStream(startMusic);
+            UpdateMusicStream(startMusic);
+
             if (IsKeyPressed(KEY_ENTER))
             {
                 currentScreen = GAMEPLAY;
@@ -66,6 +81,11 @@ void Update()
         break;
         case GAMEPLAY:
         {
+            StopMusicStream(startMusic);
+
+            PlayMusicStream(mainMusic);
+            UpdateMusicStream(mainMusic);
+
             ending = gameManager.Update();
             score = gameManager.GetScore();
             gameTime = gameManager.GetTimer();
@@ -78,6 +98,11 @@ void Update()
         break;
         case ENDING:
         {
+            StopMusicStream(mainMusic);
+
+            PlayMusicStream(endMusic);
+            UpdateMusicStream(endMusic);
+
             gameManager.ResetScore();
             gameManager.ResetTimer();
 
@@ -105,8 +130,8 @@ void Draw()
     {
         case MENU:
         {
-            DrawText("BRICK BREAKER", (GetScreenWidth() / 2) - (MeasureText("BRICK BREAKER", 150) / 2), 300, 150, RED);
-            DrawText("Press ENTER to PLAY", (GetScreenWidth() / 2) - (MeasureText("Press ENTER to PLAY", 80) / 2), 500, 80, LIGHTGRAY);
+            DrawText("BRICK BREAKER", (GetScreenWidth() / 2) - (MeasureText("BRICK BREAKER", 100) / 2), 350, 100, RED);
+            DrawText("Press ENTER to PLAY", (GetScreenWidth() / 2) - (MeasureText("Press ENTER to PLAY", 50) / 2), 500, 50, LIGHTGRAY);
         }
         break;
         case GAMEPLAY:
@@ -138,7 +163,8 @@ void Draw()
 
 void Unload() 
 {
-    CloseWindow();
+    CloseAudioDevice();
+    CloseWindow();     
 }
 
 

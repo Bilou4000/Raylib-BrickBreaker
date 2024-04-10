@@ -33,7 +33,7 @@ void GameManager::Init()
     //update pos of every brock in row and colum
     for (int row = 0; row < startRowBricks; row++)
     {
-        for (int column = 0; column < 8; column++)
+        for (int column = 0; column < maxBrickColumns; column++)
         {
             Brick& brick = bricks[row][column];
             brick.SetRowAndColumn(row, column);
@@ -172,19 +172,20 @@ bool GameManager::Collision(Rectangle a, Rectangle b)
 
 void GameManager::EndOfGame()
 {
-    endOfGame = false;
+    startRowBricks = startGameRow;
+    life = maxLife;
+    brickCount = 0;
 
-    for (int row = 0; row < startRowBricks; row++)
+    for (int row = 0; row < maxBrickRows; row++)
     {
-        for (int column = 0; column < 8; column++)
+        for (int column = 0; column < maxBrickColumns; column++)
         {
             Brick& brick = bricks[row][column];
-            brick.isDestroyed = false;
+            brick.isDestroyed = true;
         }
     }
 
-    startRowBricks = startGameRow;
-    life = maxLife;
+    Init();
 }
 
 int GameManager::GetScore()

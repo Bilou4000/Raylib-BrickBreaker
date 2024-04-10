@@ -29,9 +29,9 @@ private:
 	static const int maxBrickColumns = 8;
 	Brick bricks[maxBrickRows][maxBrickColumns];
 
-	int startGameRow = 5;
+	int startGameRow = 3;
 	int startRowBricks = startGameRow;
-	int maxLife = 1;
+	int maxLife = 3;
 	int life = maxLife;
 
 	int score = 0;
