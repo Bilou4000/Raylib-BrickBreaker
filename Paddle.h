@@ -10,6 +10,7 @@ public:
 
 public:
 	Rectangle paddleRec { (1600 / 2) - (256 / 2), 900 - 70, 256, 55 };
+	int direction = 0;
 
 private:
 	int speedPaddle = 8;

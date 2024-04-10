@@ -47,7 +47,7 @@ void GameManager::Update()
     //COLLISION with paddle
     if (Collision(paddle.paddleRec, ball.ballRec))
     {
-        ball.BounceOnPaddle(paddle.paddleRec);
+        ball.BounceOnPaddle(paddle);
     }
 
     int ballRow = floorf(ball.ballRec.y / Brick::brickHeight);
@@ -81,6 +81,7 @@ void GameManager::Update()
                         if (endOfGame)
                         {
                             //return end of game
+                            //need to swithc to current screen ending
                         }
 
                         startRowBricks += 3;

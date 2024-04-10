@@ -2,13 +2,15 @@
 
 #include "raylib.h"
 
+#include "Paddle.h"
+
 class Ball
 {
 public:
 	void Update();
 	void Draw();
 
-	void BounceOnPaddle(Rectangle paddleRec);
+	void BounceOnPaddle(Paddle paddle);
 	void BounceOnBrick();
 	float Distance(float x1, float y1, float x2, float y2);
 

@@ -42,19 +42,19 @@ void Ball::Draw()
     DrawRectangleRec(ballRec, WHITE);
 }
 
-void Ball::BounceOnPaddle(Rectangle paddleRec)
+void Ball::BounceOnPaddle(Paddle paddle)
 {
     speedYBall = -speedYBall;
 
-    if (ballRec.x + ballRec.width / 2 > paddleRec.x + paddleRec.width / 2)
+    if (paddle.direction == 1)
     {
         speedXBall = maxXSpeed * Distance(ballRec.x + ballRec.width / 2, ballRec.y + ballRec.height / 2,
-            paddleRec.x + paddleRec.width / 2, paddleRec.y + paddleRec.height / 2) / (paddleRec.width / 2);
+            paddle.paddleRec.x + paddle.paddleRec.width / 2, paddle.paddleRec.y + paddle.paddleRec.height / 2) / (paddle.paddleRec.width / 2);
     }
     else
     {
         speedXBall = -maxXSpeed * Distance(ballRec.x + ballRec.width / 2, ballRec.y + ballRec.height / 2,
-            paddleRec.x + paddleRec.width / 2, paddleRec.y + paddleRec.height / 2) / (paddleRec.width / 2);
+            paddle.paddleRec.x + paddle.paddleRec.width / 2, paddle.paddleRec.y + paddle.paddleRec.height / 2) / (paddle.paddleRec.width / 2);
     }
 }
 
