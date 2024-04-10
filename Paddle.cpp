@@ -2,6 +2,7 @@
 
 void Paddle::Update()
 {
+    //move paddle
     if (IsKeyDown(KEY_A))
     {
         paddleRec.x -= speedPaddle;
@@ -13,6 +14,7 @@ void Paddle::Update()
         direction = 1;
     }
 
+    //stop paddle on the border of the screen
     if (paddleRec.x < 0)
     {
         paddleRec.x = 0;

@@ -11,15 +11,18 @@ void Ball::Update(Paddle paddle)
 
     if (isLocked)
     {
+        //ball pos is paddle pos
         ballRec.x = paddle.paddleRec.x + (paddle.paddleRec.width / 2) - (ballRec.width / 2);
         DrawText("Press SPACE to play", (GetScreenWidth() / 2) - (MeasureText("Press SPACE to play", 50) / 2), 925, 50, RED);
     }
     else
     {
+        //ball move freely
         ballRec.x += speedXBall;
         ballRec.y += speedYBall;
     }
 
+    //ball bounce on wall
     if (ballRec.y < 0)
     {
         speedYBall = -speedYBall;

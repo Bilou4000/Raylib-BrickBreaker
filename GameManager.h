@@ -8,10 +8,11 @@ class GameManager
 {
 public:
 	void Init();
-	void Update();
+	bool Update();
 	void Draw();
 
 	bool Collision(Rectangle a, Rectangle b);
+	void EndOfGame();
 
 private:
 	//Variable
@@ -22,6 +23,11 @@ private:
 	static const int maxBrickRows = 14;
 	static const int maxBrickColumns = 8;
 	Brick bricks[maxBrickRows][maxBrickColumns];
-	int startRowBricks = 5;
+
+	int startGameRow = 5;
+	int startRowBricks = startGameRow;
+	int score = 0;
+	int maxLife = 3;
+	int life = maxLife;
 };
 

@@ -21,6 +21,7 @@ int score = 0;
 //EndOfGame
 string textResult;
 bool resultVisible = false;
+bool ending = false;
 
 //Function
 void Load();
@@ -67,7 +68,12 @@ void Update()
         break;
         case GAMEPLAY:
         {
-            gameManager.Update();
+            ending = gameManager.Update();
+
+            if (ending)
+            {
+                currentScreen = ENDING;
+            }
         }
         break;
         case ENDING:
