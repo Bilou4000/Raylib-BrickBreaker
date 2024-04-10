@@ -105,8 +105,8 @@ void Draw()
     {
         case MENU:
         {
-            DrawText("BRICK BREAKER", (GetScreenWidth() / 2) - (MeasureText("BRICK BREAKER", 150) / 2), 150, 150, RED);
-            DrawText("Press ENTER to PLAY", (GetScreenWidth() / 2) - (MeasureText("Press ENTER to PLAY", 80) / 2), 400, 80, LIGHTGRAY);
+            DrawText("BRICK BREAKER", (GetScreenWidth() / 2) - (MeasureText("BRICK BREAKER", 150) / 2), 300, 150, RED);
+            DrawText("Press ENTER to PLAY", (GetScreenWidth() / 2) - (MeasureText("Press ENTER to PLAY", 80) / 2), 500, 80, LIGHTGRAY);
         }
         break;
         case GAMEPLAY:
@@ -119,17 +119,17 @@ void Draw()
         break;
         case ENDING:
         {
-            DrawText("GAME OVER", (GetScreenWidth() / 2) - (MeasureText("GAME OVER", 150) / 2), 150, 150, RED);
+            DrawText("GAME OVER", (GetScreenWidth() / 2) - (MeasureText("GAME OVER", 150) / 2), 100, 150, RED);
 
-            DrawText("SCORE :", (GetScreenWidth() / 2) - (MeasureText("SCORE :", 100) / 2), 350, 100, ORANGE);
-            DrawText(TextFormat("%i", score), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%i", score), 75) / 2), 450, 75, WHITE);
+            DrawText("SCORE", (GetScreenWidth() / 2) - (MeasureText("SCORE", 100) / 2), 300, 100, ORANGE);
+            DrawText(TextFormat("%i", score), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%i", score), 75) / 2), 400, 75, WHITE);
 
-            DrawText("GAME TIME :", (GetScreenWidth() / 2) - (MeasureText("GAME TIME :", 100) / 2), 550, 100, ORANGE);
-            DrawText(TextFormat("%fs", gameTime), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%fs", gameTime), 75) / 2), 650, 75, WHITE);
+            DrawText("TIME", (GetScreenWidth() / 2) - (MeasureText("TIME", 100) / 2), 530, 100, ORANGE);
+            DrawText(TextFormat("%fs", gameTime), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%fs", gameTime), 75) / 2), 630, 75, WHITE);
 
 
-            DrawText("Press R to PLAY AGAIN", (GetScreenWidth() / 2) - (MeasureText("Press R to PLAY AGAIN", 50) / 2), 800, 50, LIGHTGRAY);
-            DrawText("Or Press M to go back to MENU", (GetScreenWidth() / 2) - (MeasureText("Or Press M to go back to MENU", 50) / 2), 900, 50, LIGHTGRAY);
+            DrawText("Press R to PLAY AGAIN", (GetScreenWidth() / 2) - (MeasureText("Press R to PLAY AGAIN", 40) / 2), 830, 40, LIGHTGRAY);
+            DrawText("Or Press M to go back to MENU", (GetScreenWidth() / 2) - (MeasureText("Or Press M to go back to MENU", 40) / 2), 900, 40, LIGHTGRAY);
         }
         break;
         default: break;
