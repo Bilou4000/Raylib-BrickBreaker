@@ -16,7 +16,6 @@ public:
 
 	int GetScore();
 	void ResetScore();
-
 	float GetTimer();
 	void ResetTimer();
 

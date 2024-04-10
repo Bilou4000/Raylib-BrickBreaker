@@ -185,7 +185,6 @@ void GameManager::EndOfGame()
 
     startRowBricks = startGameRow;
     life = maxLife;
-    //score = 0;
 }
 
 int GameManager::GetScore()

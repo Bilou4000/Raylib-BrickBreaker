@@ -113,8 +113,6 @@ void Draw()
         {
             DrawRectangle(0, 900, GetScreenWidth(), 100, { 255, 255, 255, 50 });
             gameManager.Draw();
-
-            //DrawText(to_string(score).c_str(), 600, 50, 60, BLUE);
         }
         break;
         case ENDING:
