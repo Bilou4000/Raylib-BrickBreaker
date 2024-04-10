@@ -98,9 +98,22 @@ void GameManager::Update()
         if (hasCollided) break;
     }
 
+    //defeat
+    if (ball.ballRec.y + ball.ballRec.height > GetScreenHeight() + 50)
+    {
+        ball.ballRec.x = paddle.paddleRec.x + (paddle.paddleRec.width / 2) - (ball.ballRec.width / 2);
+        ball.ballRec.y = paddle.paddleRec.y - paddle.paddleRec.height - 10;
+        ball.isLocked = true;
 
-    //COLLISION with bricks
+        //DrawText("sefsdgsd", 200, 200, 75, RED);
+        //++leftScore;
 
+        //if (life <= 0)
+        //{
+        //    textResult = "DEFEAT";
+        //    currentScreen = ENDING;
+        //}
+    }
 }
 
 void GameManager::Draw()

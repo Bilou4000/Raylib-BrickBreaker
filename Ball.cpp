@@ -35,25 +35,14 @@ void Ball::Update(Paddle paddle)
         speedXBall = -speedXBall;
         ballRec.x = GetScreenWidth() - ballRec.width;
     }
-
-    //defeat
-    if (ballRec.y + ballRec.height > GetScreenHeight())
-    {
-        //DrawText("sefsdgsd", 200, 200, 75, RED);
-        //++leftScore;
-        //PlaceBall(false);
-
-        //if (life <= 0)
-        //{
-        //    textResult = "DEFEAT";
-        //    currentScreen = ENDING;
-        //}
-    }
 }
 
 void Ball::Draw()
 {
-    DrawRectangleRec(ballRec, WHITE);
+    if (ballRec.y + ballRec.height < 900)
+    {
+        DrawRectangleRec(ballRec, WHITE);
+    }
 }
 
 void Ball::BounceOnPaddle(Paddle paddle)
