@@ -109,7 +109,6 @@ void Draw()
         case GAMEPLAY:
         {
             gameManager.Draw();
-
             //DrawText(to_string(score).c_str(), 600, 50, 60, BLUE);
         }
         break;

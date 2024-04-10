@@ -3,8 +3,7 @@
 #include <corecrt_math.h>
 #include <stdio.h>
 
-float brickXPos = 0;
-float brickYPos = 0;
+float brickCount = 0;
 
 void GameManager::Init()
 {
@@ -12,6 +11,9 @@ void GameManager::Init()
     ball.ballRec.y = GetScreenHeight() / 2.0f;
 
     Color colors[] { MAROON, RED, ORANGE, GOLD, DARKGREEN, LIME, DARKBLUE, BLUE, DARKPURPLE, VIOLET, BROWN, BEIGE, GRAY, LIGHTGRAY};
+
+    float brickXPos = 0;
+    float brickYPos = 0;
 
     for (int row = 0; row < startRowBricks; row++)
     {
@@ -21,6 +23,8 @@ void GameManager::Init()
             brick.SetRowAndColumn(row, column);
             brick.isDestroyed = false;
             brick.brickColor = colors[row];
+
+            brickCount++;
         }
     }
 }
@@ -60,6 +64,14 @@ void GameManager::Update()
                     ball.BounceOnBrick();
                     hasCollided = true;
                     brick.isDestroyed = true;
+
+                    brickCount--;
+                    if (brickCount <= 0)
+                    {
+                        startRowBricks += 3;
+                        Init();
+                    }
+
                     break;
                 }
             }
