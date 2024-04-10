@@ -2,10 +2,23 @@
 
 #include <cmath>
 
-void Ball::Update()
+void Ball::Update(Paddle paddle)
 {
-    ballRec.x += speedXBall;
-    ballRec.y += speedYBall;
+    if (IsKeyDown(KEY_SPACE))
+    {
+        isLocked = false;
+    }
+
+    if (isLocked)
+    {
+        ballRec.x = paddle.paddleRec.x + (paddle.paddleRec.width / 2) - (ballRec.width / 2);
+        DrawText("Press SPACE to play", (GetScreenWidth() / 2) - (MeasureText("Press SPACE to play", 50) / 2), 925, 50, RED);
+    }
+    else
+    {
+        ballRec.x += speedXBall;
+        ballRec.y += speedYBall;
+    }
 
     if (ballRec.y < 0)
     {
@@ -26,10 +39,11 @@ void Ball::Update()
     //defeat
     if (ballRec.y + ballRec.height > GetScreenHeight())
     {
+        //DrawText("sefsdgsd", 200, 200, 75, RED);
         //++leftScore;
         //PlaceBall(false);
 
-        //if (score <= 0)
+        //if (life <= 0)
         //{
         //    textResult = "DEFEAT";
         //    currentScreen = ENDING;

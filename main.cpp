@@ -13,7 +13,7 @@ GameManager gameManager;
 
 //Screen
 int screenWidth = 1600;
-int screenHeight = 900;
+int screenHeight = 1000;
 
 //Score
 int score = 0;
@@ -109,6 +109,7 @@ void Draw()
         case GAMEPLAY:
         {
             gameManager.Draw();
+            DrawRectangle(0, 900, GetScreenWidth(), 100, { 255, 255, 255, 50 });
             //DrawText(to_string(score).c_str(), 600, 50, 60, BLUE);
         }
         break;

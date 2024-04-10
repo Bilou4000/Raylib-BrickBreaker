@@ -8,8 +8,10 @@ bool endOfGame = false;
 
 void GameManager::Init()
 {
-    ball.ballRec.x = GetScreenWidth() / 2.0f;
-    ball.ballRec.y = GetScreenHeight() / 2.0f;
+    ball.ballRec.x = paddle.paddleRec.x + paddle.paddleRec.width / 2;
+    ball.ballRec.y = paddle.paddleRec.y - paddle.paddleRec.height - 10;
+
+    ball.isLocked = true;
 
     Color colors[] { MAROON, RED, ORANGE, GOLD, DARKGREEN, LIME, DARKBLUE, BLUE, DARKPURPLE, VIOLET, BROWN, BEIGE, GRAY, LIGHTGRAY};
 
@@ -41,7 +43,7 @@ void GameManager::Init()
 
 void GameManager::Update()
 {
-    ball.Update();
+    ball.Update(paddle);
     paddle.Update();
 
     //COLLISION with paddle

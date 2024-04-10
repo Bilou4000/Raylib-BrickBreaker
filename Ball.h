@@ -7,7 +7,7 @@
 class Ball
 {
 public:
-	void Update();
+	void Update(Paddle paddle);
 	void Draw();
 
 	void BounceOnPaddle(Paddle paddle);
@@ -16,6 +16,7 @@ public:
 
 public:
 	Rectangle ballRec { 0, 0, 64, 64};
+	bool isLocked = true;
 
 private:
 	int speedXBall = 6;
