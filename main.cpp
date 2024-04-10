@@ -125,7 +125,7 @@ void Draw()
             DrawText(TextFormat("%i", score), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%i", score), 75) / 2), 400, 75, WHITE);
 
             DrawText("TIME", (GetScreenWidth() / 2) - (MeasureText("TIME", 100) / 2), 530, 100, ORANGE);
-            DrawText(TextFormat("%fs", gameTime), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%fs", gameTime), 75) / 2), 630, 75, WHITE);
+            DrawText(TextFormat("%.2fs", gameTime), (GetScreenWidth() / 2) - (MeasureText(TextFormat("%.2fs", gameTime), 75) / 2), 630, 75, WHITE);
 
 
             DrawText("Press R to PLAY AGAIN", (GetScreenWidth() / 2) - (MeasureText("Press R to PLAY AGAIN", 40) / 2), 830, 40, LIGHTGRAY);
